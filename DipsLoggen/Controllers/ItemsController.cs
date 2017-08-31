@@ -7,31 +7,31 @@ using System.Web.Http;
 
 namespace DipsLoggen.Controllers
 {
-    public class ValuesController : ApiController
+    public class ItemsController : ApiController
     {
-        // GET api/values
+        // GET api/items
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "item1", "item2" };
         }
 
-        // GET api/values/5
+        // GET api/items/5
         public string Get(int id)
         {
-            return "value";
+            return "item";
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        // POST api/items
+        public void Post([FromBody]string item)
         {
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        // PUT api/items/5
+        public void Put(int id, [FromBody]string item)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/items/5
         public void Delete(int id)
         {
         }
