@@ -18,7 +18,7 @@ namespace DipsLoggen.Controllers
         // GET api/items/5
         public string Get(int id)
         {
-            return "item";
+            return $"item {id}";
         }
 
         // POST api/items
