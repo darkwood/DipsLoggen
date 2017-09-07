@@ -4,37 +4,53 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-using DipsLoggen.Models;
+using DipsLoggen.DataContext;
+using DipsLoggen.DataContext.Models;
 
 namespace DipsLoggen.Controllers
 {
     public class HuntsController : ApiController
     {
-        public List<Jakt> JaktList => new List<Jakt>
+        public List<Hunt> HuntList => new List<Hunt>
                                       {
-                                          new Jakt {ID = 1, Sted = "Sted 1"},
-                                          new Jakt {ID = 2, Sted = "Sted 2"},
+                                          new Hunt {ID = 1, Location = "Sted 1"},
+                                          new Hunt {ID = 2, Location = "Sted 2"},
                                       };
 
         // GET api/hunt
-        public IEnumerable<Jakt> Get()
+        public IEnumerable<Hunt> Get()
         {
-            return JaktList;
+            return HuntList;
         }
         
         // GET api/hunt/5
-        public Jakt Get(int id)
+        public Hunt Get(int id)
         {
-            return JaktList.SingleOrDefault(j => j.ID == id);
+            return HuntList.SingleOrDefault(j => j.ID == id);
         }
 
         // POST api/hunt
-        public void Post([FromBody]string item)
+        public void Post([FromBody]Hunt Hunt)
         {
+            using (var db = new DatabaseContext())
+            {
+                var hunt = new Hunt { Location = "Teststed 1" };
+                db.Hunts.Add(hunt);
+                db.SaveChanges();
+
+                // Display all Blogs from the database 
+                var query = from b in db.Hunts
+                            select b;
+                
+                foreach (var item in query)
+                {
+                    
+                }
+            }
         }
 
         // PUT api/hunt/5
-        public void Put(int id, [FromBody]string item)
+        public void Put(int id, [FromBody]Hunt Hunt)
         {
         }
 
